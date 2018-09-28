@@ -28,7 +28,7 @@ $.fn.editableTableWidget = function (options) {
 					.hide()
 					.appendTo(element.parent())
 					.datepicker({
-						format: 'dd-M-yyyy'
+						format: 'dd-mm-yyyy'
 					}),
 				select: activeOptions.editors.select
 					.css('position', 'absolute')
@@ -167,7 +167,11 @@ $.fn.editableTableWidget = function (options) {
 			}
 		});
 
-		element.find('td').prop('tabindex', 1);
+		element.find('td').each(function () {
+			if (!$(this).attr('tabindex')) {
+				$(this).prop('tabindex', 1);
+			}
+		});
 
 		$(window).on('resize', function () {
 			if (editor == null) {
